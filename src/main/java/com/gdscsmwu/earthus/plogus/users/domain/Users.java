@@ -1,5 +1,7 @@
 package com.gdscsmwu.earthus.plogus.users.domain;
 
+import com.gdscsmwu.earthus.plogus.plogging.domain.Plogging;
+import com.gdscsmwu.earthus.plogus.quiz.domain.Quiz;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -8,6 +10,8 @@ import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 //@Getter
 @Data
@@ -45,6 +49,16 @@ public class Users {
 
     @Column(name = "user_profile", columnDefinition = "text")
     private String userProfile;
+
+
+
+    @OneToMany(mappedBy = "users")
+    private List<Plogging> plogging = new ArrayList<Plogging>();
+
+    @OneToMany(mappedBy = "users")
+    private List<Quiz> quiz = new ArrayList<Quiz>();
+
+
 
     @Builder
     public Users(String username, String password, String email, UsersRole role, String provider, String providerId, LocalDateTime createDate, String userProfile) {

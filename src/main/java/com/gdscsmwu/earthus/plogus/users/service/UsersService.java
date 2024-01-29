@@ -2,10 +2,7 @@ package com.gdscsmwu.earthus.plogus.users.service;
 
 import com.gdscsmwu.earthus.plogus.users.domain.Users;
 import com.gdscsmwu.earthus.plogus.users.domain.UsersRole;
-import com.gdscsmwu.earthus.plogus.users.dto.JoinRequestDto;
-import com.gdscsmwu.earthus.plogus.users.dto.LoginRequestDto;
-import com.gdscsmwu.earthus.plogus.users.dto.PasswordUpdateRequestDto;
-import com.gdscsmwu.earthus.plogus.users.dto.UsernameResponseDto;
+import com.gdscsmwu.earthus.plogus.users.dto.*;
 import com.gdscsmwu.earthus.plogus.users.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
@@ -69,6 +66,20 @@ public class UsersService implements UserDetailsService {
         return new UsernameResponseDto(entity);
 
     }
+
+
+
+    // 마이페이지 : username, userprofile, ploggingStart, totalPloggingScore, totalQuizScore 조회
+    @Transactional
+    public MypageResponseDto viewMypage(Long userUuid) {
+
+        Users entity = usersRepository.findByUserUuid(userUuid);
+
+        return new MypageResponseDto(entity);
+
+    }
+
+
 
     // password 수정
     @Transactional

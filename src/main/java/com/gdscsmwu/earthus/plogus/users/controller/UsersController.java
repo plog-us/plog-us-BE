@@ -95,6 +95,18 @@ public class UsersController {
 
     }
 
+
+
+    // 마이페이지 : username, userprofile, ploggingStart, totalPloggingScore, totalQuizScore 조회
+    @GetMapping("/mypage/{userUuid}")
+    public MypageResponseDto viewMypage(@PathVariable Long userUuid) {
+
+        return usersService.viewMypage(userUuid);
+
+    }
+
+
+
     // password 수정
     @PutMapping("/modify/password/{userUuid}")
     public Long modifyPassword(@PathVariable Long userUuid, @RequestBody PasswordUpdateRequestDto passwordUpdateRequestDto) {
@@ -128,6 +140,13 @@ public class UsersController {
         }
 
     }
+
+
+
+
+
+
+
 
     //////////////////
 
