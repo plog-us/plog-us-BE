@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @NoArgsConstructor
@@ -25,12 +26,16 @@ public class Quiz {
     @Column(name = "quiz_score", columnDefinition = "int", nullable = false)
     private int quizScore;
 
+    @Column(name = "quiz_created", columnDefinition = "timestamp", nullable = false)
+    private LocalDateTime quizCreated;
+
 
 
     @Builder
-    public Quiz (Users users, int quizScore) {
+    public Quiz (Users users, int quizScore, LocalDateTime quizCreated) {
         this.users = users;
         this.quizScore = quizScore;
+        this.quizCreated = quizCreated;
     }
 
 }
