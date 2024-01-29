@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
@@ -95,13 +96,27 @@ public class UsersController {
 
     }
 
-
-
     // 마이페이지 : username, userprofile, ploggingStart, totalPloggingScore, totalQuizScore 조회
     @GetMapping("/mypage/{userUuid}")
     public MypageResponseDto viewMypage(@PathVariable Long userUuid) {
 
         return usersService.viewMypage(userUuid);
+
+    }
+
+    // 플로깅 리더보드 : username, totalPloggingScore
+    @GetMapping("/leaderboard/plogging")
+    public List<LeaderboardPloggingResponseDto> leaderboardplogging() {
+
+        return usersService.leaderboardPlogging();
+
+    }
+
+    // 퀴즈 리더보드 : username, totalQuizScore
+    @GetMapping("/leaderboard/quiz")
+    public List<LeaderboardQuizResponseDto> leaderboardQuiz() {
+
+        return usersService.leaderboardQuiz();
 
     }
 

@@ -15,12 +15,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
 public class UsersService implements UserDetailsService {
+
+//    @PersistenceContext
+//    private EntityManager entityManager;
 
     private final UsersRepository usersRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -67,16 +74,34 @@ public class UsersService implements UserDetailsService {
 
     }
 
-
-
     // 마이페이지 : username, userprofile, ploggingStart, totalPloggingScore, totalQuizScore 조회
-    @Transactional
+    @Transactional(readOnly = true)
     public MypageResponseDto viewMypage(Long userUuid) {
 
         Users entity = usersRepository.findByUserUuid(userUuid);
 
         return new MypageResponseDto(entity);
 
+    }
+
+    @Transactional(readOnly = true)
+    // 플로깅 리더보드 : username, totalPloggingScore
+    public List<LeaderboardPloggingResponseDto> leaderboardPlogging() {
+        return usersRepository.findAll().stream()
+                .map(LeaderboardPloggingResponseDto::new)
+                .sorted(Comparator.comparingInt(LeaderboardPloggingResponseDto::getTotalPloggingScore).reversed())
+                .limit(6)
+                .collect(Collectors.toList());
+    }
+
+    // 퀴즈 리더보드 : username, totalQuizScore
+    @Transactional(readOnly = true)
+    public List<LeaderboardQuizResponseDto> leaderboardQuiz() {
+        return usersRepository.findAll().stream()
+                .map(LeaderboardQuizResponseDto::new)
+                .sorted(Comparator.comparingInt(LeaderboardQuizResponseDto::getTotalQuizScore).reversed())
+                .limit(6)
+                .collect(Collectors.toList());
     }
 
 
