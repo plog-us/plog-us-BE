@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -120,8 +121,6 @@ public class UsersController {
 
     }
 
-
-
     // password 수정
     @PutMapping("/modify/password/{userUuid}")
     public Long modifyPassword(@PathVariable Long userUuid, @RequestBody PasswordUpdateRequestDto passwordUpdateRequestDto) {
@@ -156,7 +155,23 @@ public class UsersController {
 
     }
 
+    // 프로필 사진 수정 : userProfile, profileUuid
+    @PatchMapping("/editprofile/{userUuid}")
+    public ResponseEntity<Void> updateUserProfile(@PathVariable Long userUuid, UserProfileUpdateRequestDto userProfileUpdateRequestDto) throws IOException {
 
+        usersService.updateUserProfile(userUuid, userProfileUpdateRequestDto);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
+
+    // 프로필 사진 삭제 : userProfile, profileUuid --> null
+    @DeleteMapping("/deleteprofile/{userUuid}")
+    public void deleteUserProfile(@PathVariable Long userUuid) {
+
+        usersService.deleteUserProfile(userUuid);
+
+    }
 
 
 

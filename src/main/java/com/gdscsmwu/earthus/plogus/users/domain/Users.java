@@ -2,6 +2,7 @@ package com.gdscsmwu.earthus.plogus.users.domain;
 
 import com.gdscsmwu.earthus.plogus.plogging.domain.Plogging;
 import com.gdscsmwu.earthus.plogus.quiz.domain.Quiz;
+import com.gdscsmwu.earthus.plogus.users.dto.UserProfileUpdateRequestDto;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
@@ -50,6 +51,9 @@ public class Users {
     @Column(name = "user_profile", columnDefinition = "text")
     private String userProfile;
 
+    @Column(name = "profile_uuid", columnDefinition = "varchar(255)")
+    private String profileUuid;
+
 
 
     @OneToMany(mappedBy = "users")
@@ -80,6 +84,12 @@ public class Users {
     // username 수정
     public void modifyUsername(String username) {
         this.username = username;
+    }
+
+    // userProfile 수정
+    public void updateUserProfile(String imageUrl, String imageUuid) {
+        this.userProfile = imageUrl;
+        this.profileUuid = imageUuid;
     }
 
 }
