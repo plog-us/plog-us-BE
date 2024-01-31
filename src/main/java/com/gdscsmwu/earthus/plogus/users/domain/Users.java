@@ -65,7 +65,7 @@ public class Users {
 
 
     @Builder
-    public Users(String username, String password, String email, UsersRole role, String provider, String providerId, LocalDateTime createDate, String userProfile) {
+    public Users(String username, String password, String email, UsersRole role, String provider, String providerId, LocalDateTime createDate, String userProfile, String profileUuid) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -74,6 +74,7 @@ public class Users {
         this.providerId = providerId;
         this.createDate = createDate;
         this.userProfile = userProfile;
+        this.profileUuid = profileUuid;
     }
 
     // password 수정

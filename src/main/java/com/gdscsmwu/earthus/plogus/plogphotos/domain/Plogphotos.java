@@ -4,6 +4,7 @@ import com.gdscsmwu.earthus.plogus.plogging.domain.Plogging;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -27,13 +28,18 @@ public class Plogphotos {
     @Column(name = "plogphoto_url", columnDefinition = "text", nullable = false)
     private String plogphotoUrl;
 
+    @Column(name = "photo_uuid", columnDefinition = "varchar(255)")
+    private String photoUuid;
+
+    @CreationTimestamp
     @Column(name = "plogphoto_created", columnDefinition = "timestamp", nullable = false)
     private LocalDateTime plogphotoCreated;
 
     @Builder
-    public Plogphotos (Plogging plogging, String plogphotoUrl, LocalDateTime plogphotoCreated) {
+    public Plogphotos (Plogging plogging, String plogphotoUrl, String photoUuid, LocalDateTime plogphotoCreated) {
         this.plogging = plogging;
         this.plogphotoUrl = plogphotoUrl;
+        this.photoUuid = photoUuid;
         this.plogphotoCreated = plogphotoCreated;
     }
 
