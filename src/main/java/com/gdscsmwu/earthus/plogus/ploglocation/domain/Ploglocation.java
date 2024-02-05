@@ -4,6 +4,7 @@ import com.gdscsmwu.earthus.plogus.wastebin.domain.Wastebin;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 @Table(name = "ploglocation")
@@ -31,6 +33,9 @@ public class Ploglocation {
     @Column(name = "plog_longitude", columnDefinition = "decimal(10, 7)")
     private BigDecimal plogLongitude;
 
+    @Column(name = "plog_count", columnDefinition = "int")
+    private int plogCount;
+
 
 
     @OneToMany(mappedBy = "ploglocation")
@@ -39,10 +44,11 @@ public class Ploglocation {
 
 
     @Builder
-    public Ploglocation (String plogAddress, BigDecimal plogLatitude, BigDecimal plogLongitude, List<Wastebin> wastebin) {
+    public Ploglocation (String plogAddress, BigDecimal plogLatitude, BigDecimal plogLongitude, int plogCount, List<Wastebin> wastebin) {
         this.plogAddress = plogAddress;
         this.plogLatitude = plogLatitude;
         this.plogLongitude = plogLongitude;
+        this.plogCount = plogCount;
         this.wastebin = wastebin;
     }
 

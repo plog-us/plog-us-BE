@@ -66,8 +66,8 @@ public class PloggingService {
     }
 
     // 플로깅 종료 : ploggingEnd, ploggingTime
+    // 플로깅 장소의 플로깅 횟수 + 1 : plogCount + 1
     @Transactional
-    //public Long ploggingFinish(Long ploggingUuid, PloggingFinishRequestDto requestDto) {
     public PloggingFinishResponseDto ploggingFinish(Long ploggingUuid, PloggingFinishRequestDto requestDto) {
 
         Plogging plogging = ploggingRepository.findById(ploggingUuid)
@@ -84,7 +84,8 @@ public class PloggingService {
 
         plogging.ploggingFinish(ploggingEnd, time, requestDto.getPloggingDistance(), requestDto.getPloggingScore());
 
-        //return ploggingUuid;
+        // 플로깅 장소의 플로깅 횟수 + 1 : plogCount + 1
+        plogging.getPloglocation().setPlogCount(plogging.getPloglocation().getPlogCount() + 1);
 
         return new PloggingFinishResponseDto(plogging);
 

@@ -15,7 +15,7 @@ public class PloglocationService {
 
     private final PloglocationRepository ploglocationRepository;
 
-    // ploglocation 전체 조회 : plogUuid, plogAddress, plogLatitude, plogLongitude
+    // ploglocation 전체 조회 : plogUuid, plogAddress, plogLatitude, plogLongitude, plogCount
     @Transactional(readOnly = true)
     public List<PloglocationResponseDto> viewPloglocation() {
 

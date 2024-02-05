@@ -44,11 +44,12 @@ public class PloggingController {
     }
 
     // 플로깅 종료 : ploggingEnd, ploggingTime
+    // 플로깅 장소의 플로깅 횟수 + 1 : plogCount + 1
     @PutMapping("/finishplogging/{ploggingUuid}")
-    //public Long ploggingFinish(@PathVariable Long ploggingUuid, @RequestBody PloggingFinishRequestDto requestDto) {
     public PloggingFinishResponseDto ploggingFinish(@PathVariable Long ploggingUuid, @RequestBody PloggingFinishRequestDto requestDto) {
-        //return ploggingService.ploggingFinish(ploggingUuid, requestDto);
+
         return ploggingService.ploggingFinish(ploggingUuid, requestDto);
+
     }
 
     // 플로깅 중 : ploggingScore + 1

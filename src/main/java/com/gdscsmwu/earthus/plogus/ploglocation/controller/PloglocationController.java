@@ -14,7 +14,7 @@ public class PloglocationController {
 
     private final PloglocationService ploglocationService;
 
-    // ploglocation 전체 조회 : plogUuid, plogAddress, plogLatitude, plogLongitude
+    // ploglocation 전체 조회 : plogUuid, plogAddress, plogLatitude, plogLongitude, plogCount
     @GetMapping("/ploglocation")
     public List<PloglocationResponseDto> viewploglocation() {
 
