@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +25,11 @@ public class Ploglocation {
     @Column(name = "plog_address", columnDefinition = "varchar(255)", nullable = false)
     private String plogAddress;
 
-    @Column(name = "plog_point", columnDefinition = "point")
-    private Point plogPoint;
+    @Column(name = "plog_latitude", columnDefinition = "decimal(9, 7)")
+    private BigDecimal plogLatitude;
+
+    @Column(name = "plog_longitude", columnDefinition = "decimal(10, 7)")
+    private BigDecimal plogLongitude;
 
 
 
@@ -35,9 +39,10 @@ public class Ploglocation {
 
 
     @Builder
-    public Ploglocation (String plogAddress, Point plogPoint, List<Wastebin> wastebin) {
+    public Ploglocation (String plogAddress, BigDecimal plogLatitude, BigDecimal plogLongitude, List<Wastebin> wastebin) {
         this.plogAddress = plogAddress;
-        this.plogPoint = plogPoint;
+        this.plogLatitude = plogLatitude;
+        this.plogLongitude = plogLongitude;
         this.wastebin = wastebin;
     }
 
