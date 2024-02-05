@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import java.math.BigDecimal;
 
+// ploglocation 전체 조회 : plogUuid, plogAddress, plogLatitude, plogLongitude
 @Getter
 public class PloglocationResponseDto {
 
