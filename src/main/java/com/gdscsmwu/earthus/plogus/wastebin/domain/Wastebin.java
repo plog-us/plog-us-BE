@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 @Getter
 @NoArgsConstructor
@@ -26,14 +27,18 @@ public class Wastebin {
     @Column(name = "bin_address", columnDefinition = "varchar(255)", nullable = false)
     private String binAddress;
 
-    @Column(name = "bin_point", columnDefinition = "point", nullable = false)
-    private Point binPoint;
+    @Column(name = "bin_latitude", columnDefinition = "decimal(9, 7)")
+    private BigDecimal binLatitude;
+
+    @Column(name = "bin_longitude", columnDefinition = "decimal(10, 7)")
+    private BigDecimal binLongitude;
 
     @Builder
-    public Wastebin (Ploglocation ploglocation, String binAddress, Point binPoint) {
+    public Wastebin (Ploglocation ploglocation, String binAddress, BigDecimal binLatitude, BigDecimal binLongitude) {
         this.ploglocation = ploglocation;
         this.binAddress = binAddress;
-        this.binPoint = binPoint;
+        this.binLatitude = binLatitude;
+        this.binLongitude = binLongitude;
     }
 
 }

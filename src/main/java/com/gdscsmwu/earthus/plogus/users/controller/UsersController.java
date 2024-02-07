@@ -54,7 +54,7 @@ public class UsersController {
     }
 
     // 로그인 : email, password
-    @GetMapping("/login")
+    @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody LoginRequestDto loginRequestDto) {
 
         String email = loginRequestDto.getEmail();
@@ -198,20 +198,20 @@ public class UsersController {
 
     }
 
-    // email 사용하여 password 변경
-    @PutMapping("/reset/password")
-    public ResponseEntity<String> resetPassword(@RequestBody PasswordResetRequestDto passwordResetRequestDto) {
-
-        boolean isReset = usersService.resetPassword(passwordResetRequestDto.getEmail(), passwordResetRequestDto.getNewPassword());
-
-        if(isReset) {
-            return ResponseEntity.ok("비밀번호 재설정");
-        }
-        else {
-            return ResponseEntity.notFound().build();
-        }
-
-    }
+//    // email 사용하여 password 변경
+//    @PutMapping("/reset/password")
+//    public ResponseEntity<String> resetPassword(@RequestBody PasswordResetRequestDto passwordResetRequestDto) {
+//
+//        boolean isReset = usersService.resetPassword(passwordResetRequestDto.getEmail(), passwordResetRequestDto.getNewPassword());
+//
+//        if(isReset) {
+//            return ResponseEntity.ok("비밀번호 재설정");
+//        }
+//        else {
+//            return ResponseEntity.notFound().build();
+//        }
+//
+//    }
 
     // username 중복 검사
     @PostMapping("/join/username/check")

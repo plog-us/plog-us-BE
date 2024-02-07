@@ -16,14 +16,14 @@ public class PloggingFinishRequestDto {
     private LocalDateTime ploggingEnd;
     private Time ploggingTime;
     private BigDecimal ploggingDistance;
-    private int ploggingScore;
+    //private int ploggingScore;
 
     @Builder
-    public PloggingFinishRequestDto(LocalDateTime ploggingEnd, Time ploggingTime, BigDecimal ploggingDistance, int ploggingScore) {
+    public PloggingFinishRequestDto(LocalDateTime ploggingEnd, Time ploggingTime, BigDecimal ploggingDistance) {
         this.ploggingEnd = ploggingEnd;
         this.ploggingTime = ploggingTime;
         this.ploggingDistance = ploggingDistance;
-        this.ploggingScore = ploggingScore;
+        //this.ploggingScore = ploggingScore;
     }
 
 }

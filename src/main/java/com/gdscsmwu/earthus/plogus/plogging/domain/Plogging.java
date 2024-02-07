@@ -5,17 +5,14 @@ import com.gdscsmwu.earthus.plogus.plogphotos.domain.Plogphotos;
 import com.gdscsmwu.earthus.plogus.users.domain.Users;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.sql.Time;
-import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,11 +82,10 @@ public class Plogging {
     }
 
     // 플로깅 종료 update : ploggingEnd, ploggingTime
-    public void ploggingFinish(LocalDateTime ploggingEnd, Time ploggingTime, BigDecimal ploggingDistance, int ploggingScore) {
+    public void ploggingFinish(LocalDateTime ploggingEnd, Time ploggingTime, BigDecimal ploggingDistance) {
         this.ploggingEnd = ploggingEnd;
         this.ploggingTime = ploggingTime;
         this.ploggingDistance = ploggingDistance;
-        this.ploggingScore = ploggingScore;
     }
 
 }
