@@ -2,10 +2,7 @@ package com.gdscsmwu.earthus.plogus.plogging.controller;
 
 import com.gdscsmwu.earthus.plogus.plogging.dto.*;
 import com.gdscsmwu.earthus.plogus.plogging.service.PloggingService;
-import com.gdscsmwu.earthus.plogus.ploglocation.domain.Ploglocation;
-import com.gdscsmwu.earthus.plogus.ploglocation.repository.PloglocationRepository;
 import com.gdscsmwu.earthus.plogus.users.domain.Users;
-import com.gdscsmwu.earthus.plogus.users.repository.UsersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,8 +13,6 @@ import java.util.List;
 public class PloggingController {
 
     private final PloggingService ploggingService;
-    private final UsersRepository usersRepository;
-    private final PloglocationRepository ploglocationRepository;
 
     // 플로깅 기록 세부 조회
     @GetMapping("/plogginglog/details/{ploggingUuid}")
@@ -36,10 +31,26 @@ public class PloggingController {
     }
 
     // 플로깅 시작 : userUuid, plogUuid, ploggingStart
-    @PostMapping("/startplogging/{plogUuid}")
-    public Long ploggingStart(@PathVariable Long plogUuid, @RequestBody PloggingStartRequestDto requestDto) {
+//    @PostMapping("/startplogging/{plogUuid}")
+//    public Long ploggingStart(@PathVariable Long plogUuid, @RequestBody PloggingStartRequestDto requestDto) {
+//
+//        return ploggingService.ploggingStart(requestDto.getUserUuid(), plogUuid);
+//
+//    }
+    @PostMapping("/startplogging/{userUuid}/{plogUuid}")
+    public Long ploggingStart(@PathVariable Long userUuid, @PathVariable Long plogUuid) {
 
-        return ploggingService.ploggingStart(requestDto.getUserUuid(), plogUuid);
+        return ploggingService.ploggingStart(userUuid, plogUuid);
+
+    }
+
+    // 플로깅 중 : ploggingScore + 1
+    @PutMapping("/scoreplogging/{ploggingUuid}")
+    public Long ploggingScore(@PathVariable Long ploggingUuid) {
+
+        ploggingService.ploggingScore(ploggingUuid);
+
+        return ploggingUuid;
 
     }
 
@@ -50,14 +61,6 @@ public class PloggingController {
 
         return ploggingService.ploggingFinish(ploggingUuid, requestDto);
 
-    }
-
-    // 플로깅 중 : ploggingScore + 1
-    @PutMapping("/scoreplogging/{ploggingUuid}")
-    public Long ploggingScore(@PathVariable Long ploggingUuid) {
-        ploggingService.ploggingScore(ploggingUuid);
-
-        return ploggingUuid;
     }
 
 }
