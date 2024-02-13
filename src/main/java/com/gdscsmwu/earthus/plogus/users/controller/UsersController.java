@@ -55,25 +55,31 @@ public class UsersController {
 
     // 로그인 : email, password
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequestDto loginRequestDto) {
+    public LoginResponseDto login(@RequestBody LoginRequestDto loginRequestDto) {
 
-        String email = loginRequestDto.getEmail();
-        String password = loginRequestDto.getPassword();
-
-        if(email == null || password == null || email.isEmpty() || password.isEmpty()) {
-            return ResponseEntity.badRequest().body("이메일과 비밀번호를 입력하세요");
-        }
-
-        Users users = usersService.login(loginRequestDto);
-
-        if (users != null) {
-            return ResponseEntity.ok("로그인 성공");
-        }
-        else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패 : 이메일 또는 비밀번호를 확인하세요");
-        }
+        return usersService.login(loginRequestDto);
 
     }
+//    @PostMapping("/login")
+//    public ResponseEntity<String> login(@RequestBody LoginRequestDto loginRequestDto) {
+//
+//        String email = loginRequestDto.getEmail();
+//        String password = loginRequestDto.getPassword();
+//
+//        if(email == null || password == null || email.isEmpty() || password.isEmpty()) {
+//            return ResponseEntity.badRequest().body("이메일과 비밀번호를 입력하세요");
+//        }
+//
+//        Users users = usersService.login(loginRequestDto);
+//
+//        if (users != null) {
+//            return ResponseEntity.ok("로그인 성공");
+//        }
+//        else {
+//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패 : 이메일 또는 비밀번호를 확인하세요");
+//        }
+//
+//    }
 
     // 로그아웃
     @PostMapping("/logout")
