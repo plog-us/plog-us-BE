@@ -63,7 +63,7 @@ public class UsersService implements UserDetailsService {
 
     // 로그인 : email, password
     @Transactional
-    public Users login(LoginRequestDto loginRequestDto) {
+    public LoginResponseDto login(LoginRequestDto loginRequestDto) {
 
         Users users = usersRepository.findByEmail(loginRequestDto.getEmail())
                 .orElse(null);
@@ -74,9 +74,23 @@ public class UsersService implements UserDetailsService {
         }
 
         // email & password 일치
-        return users;
+        return new LoginResponseDto(users);
 
     }
+//    public Users login(LoginRequestDto loginRequestDto) {
+//
+//        Users users = usersRepository.findByEmail(loginRequestDto.getEmail())
+//                .orElse(null);
+//
+//        // email X 또는 password 일치 X
+//        if (users == null || !bCryptPasswordEncoder.matches(loginRequestDto.getPassword(), users.getPassword())) {
+//            return null;
+//        }
+//
+//        // email & password 일치
+//        return users;
+//
+//    }
 
     // 메인페이지 : username 조회
     @Transactional
