@@ -23,6 +23,15 @@ public class UsersController {
 
     private final UsersService usersService;
 
+    @GetMapping("/")
+    public String home() {
+
+        return "index";
+
+    }
+
+
+
     // 회원 가입 : username, password, email
     @PostMapping("/join")
     public ResponseEntity<Users> join(@Valid @RequestBody JoinRequestDto joinRequestDto, BindingResult bindingResult) {
@@ -46,6 +55,7 @@ public class UsersController {
             Users newUser = usersService.join(joinRequestDto);
 
             return ResponseEntity.ok(newUser);
+
         }
         catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
@@ -60,26 +70,6 @@ public class UsersController {
         return usersService.login(loginRequestDto);
 
     }
-//    @PostMapping("/login")
-//    public ResponseEntity<String> login(@RequestBody LoginRequestDto loginRequestDto) {
-//
-//        String email = loginRequestDto.getEmail();
-//        String password = loginRequestDto.getPassword();
-//
-//        if(email == null || password == null || email.isEmpty() || password.isEmpty()) {
-//            return ResponseEntity.badRequest().body("이메일과 비밀번호를 입력하세요");
-//        }
-//
-//        Users users = usersService.login(loginRequestDto);
-//
-//        if (users != null) {
-//            return ResponseEntity.ok("로그인 성공");
-//        }
-//        else {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("로그인 실패 : 이메일 또는 비밀번호를 확인하세요");
-//        }
-//
-//    }
 
     // 로그아웃
     @PostMapping("/logout")
@@ -184,8 +174,6 @@ public class UsersController {
 
 
 
-    //////////////////
-
     // userUuid 사용하여 회원정보 조회
     @GetMapping("/user/{userUuid}")
     public ResponseEntity<Users> findByUserUuid(@Valid @PathVariable("userUuid") Long userUuid) {
@@ -203,21 +191,6 @@ public class UsersController {
         }
 
     }
-
-//    // email 사용하여 password 변경
-//    @PutMapping("/reset/password")
-//    public ResponseEntity<String> resetPassword(@RequestBody PasswordResetRequestDto passwordResetRequestDto) {
-//
-//        boolean isReset = usersService.resetPassword(passwordResetRequestDto.getEmail(), passwordResetRequestDto.getNewPassword());
-//
-//        if(isReset) {
-//            return ResponseEntity.ok("비밀번호 재설정");
-//        }
-//        else {
-//            return ResponseEntity.notFound().build();
-//        }
-//
-//    }
 
     // username 중복 검사
     @PostMapping("/join/username/check")

@@ -26,6 +26,8 @@ public class Question {
     @Column(name = "question_incorrect", columnDefinition = "varchar(255)", nullable = false)
     private String questionIncorrect;
 
+
+
     @Builder Question(String questionContext, String questionCorrect, String questionIncorrect) {
         this.questionContext = questionContext;
         this.questionCorrect = questionCorrect;

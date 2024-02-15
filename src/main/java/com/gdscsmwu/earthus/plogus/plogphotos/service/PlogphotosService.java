@@ -1,7 +1,6 @@
 package com.gdscsmwu.earthus.plogus.plogphotos.service;
 
 import com.gdscsmwu.earthus.plogus.plogging.domain.Plogging;
-import com.gdscsmwu.earthus.plogus.plogging.repository.PloggingRepository;
 import com.gdscsmwu.earthus.plogus.plogphotos.dto.PlogphotoSaveRequestDto;
 import com.gdscsmwu.earthus.plogus.plogphotos.repository.PlogphotosRepository;
 import com.google.auth.oauth2.GoogleCredentials;
@@ -31,6 +30,8 @@ public class PlogphotosService {
     private String keyFileName;
 //    @Value("${spring.cloud.gcp.storage.project-id}")
 //    private String projectId;
+
+
 
     // 플로깅 사진 업로드 : ploggingUuid, plogphotoUrl, photoUuid
     @Transactional

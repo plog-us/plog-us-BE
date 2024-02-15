@@ -9,8 +9,6 @@ import java.util.Optional;
 
 public interface UsersRepository extends JpaRepository<Users, Long> {
 
-    // Optional<Users> <-> orElse()
-
     // username으로 users 찾기
     Optional<Users> findByUsername(String username);
 

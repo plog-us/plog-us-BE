@@ -12,12 +12,15 @@ public class LeaderboardPloggingResponseDto {
     private int totalPloggingScore;
 
     public LeaderboardPloggingResponseDto(Users entity) {
+
         this.username = entity.getUsername();
+
         if (entity.getPlogging() != null) {
             this.totalPloggingScore = entity.getPlogging().stream()
                     .mapToInt(Plogging::getPloggingScore)
                     .sum();
         }
+
     }
 
 }

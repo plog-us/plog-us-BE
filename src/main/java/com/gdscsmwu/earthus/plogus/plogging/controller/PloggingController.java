@@ -31,12 +31,6 @@ public class PloggingController {
     }
 
     // 플로깅 시작 : userUuid, plogUuid, ploggingStart
-//    @PostMapping("/startplogging/{plogUuid}")
-//    public Long ploggingStart(@PathVariable Long plogUuid, @RequestBody PloggingStartRequestDto requestDto) {
-//
-//        return ploggingService.ploggingStart(requestDto.getUserUuid(), plogUuid);
-//
-//    }
     @PostMapping("/startplogging/{userUuid}/{plogUuid}")
     public Long ploggingStart(@PathVariable Long userUuid, @PathVariable Long plogUuid) {
 

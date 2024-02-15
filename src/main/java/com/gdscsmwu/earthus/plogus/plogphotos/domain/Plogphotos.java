@@ -35,6 +35,8 @@ public class Plogphotos {
     @Column(name = "plogphoto_created", columnDefinition = "timestamp", nullable = false)
     private LocalDateTime plogphotoCreated;
 
+
+
     @Builder
     public Plogphotos (Plogging plogging, String plogphotoUrl, String photoUuid, LocalDateTime plogphotoCreated) {
         this.plogging = plogging;

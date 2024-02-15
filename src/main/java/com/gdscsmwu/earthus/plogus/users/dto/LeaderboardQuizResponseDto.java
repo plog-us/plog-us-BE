@@ -12,12 +12,17 @@ public class LeaderboardQuizResponseDto {
     private int totalQuizScore;
 
     public LeaderboardQuizResponseDto(Users entity) {
+
         this.username = entity.getUsername();
+
         if (entity.getQuiz() != null) {
+
             this.totalQuizScore = entity.getQuiz().stream()
                     .mapToInt(Quiz::getQuizScore)
                     .sum();
+
         }
+
     }
 
 }
