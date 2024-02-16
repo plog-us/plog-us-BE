@@ -33,9 +33,6 @@ import java.util.stream.Collectors;
 @Service
 public class UsersService implements UserDetailsService {
 
-//    @PersistenceContext
-//    private EntityManager entityManager;
-
     private final UsersRepository usersRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
@@ -77,20 +74,6 @@ public class UsersService implements UserDetailsService {
         return new LoginResponseDto(users);
 
     }
-//    public Users login(LoginRequestDto loginRequestDto) {
-//
-//        Users users = usersRepository.findByEmail(loginRequestDto.getEmail())
-//                .orElse(null);
-//
-//        // email X 또는 password 일치 X
-//        if (users == null || !bCryptPasswordEncoder.matches(loginRequestDto.getPassword(), users.getPassword())) {
-//            return null;
-//        }
-//
-//        // email & password 일치
-//        return users;
-//
-//    }
 
     // 메인페이지 : username 조회
     @Transactional
@@ -115,21 +98,25 @@ public class UsersService implements UserDetailsService {
     @Transactional(readOnly = true)
     // 플로깅 리더보드 : username, totalPloggingScore
     public List<LeaderboardPloggingResponseDto> leaderboardPlogging() {
+
         return usersRepository.findAll().stream()
                 .map(LeaderboardPloggingResponseDto::new)
                 .sorted(Comparator.comparingInt(LeaderboardPloggingResponseDto::getTotalPloggingScore).reversed())
                 .limit(6)
                 .collect(Collectors.toList());
+
     }
 
     // 퀴즈 리더보드 : username, totalQuizScore
     @Transactional(readOnly = true)
     public List<LeaderboardQuizResponseDto> leaderboardQuiz() {
+
         return usersRepository.findAll().stream()
                 .map(LeaderboardQuizResponseDto::new)
                 .sorted(Comparator.comparingInt(LeaderboardQuizResponseDto::getTotalQuizScore).reversed())
                 .limit(6)
                 .collect(Collectors.toList());
+
     }
 
     // password 수정
@@ -246,7 +233,8 @@ public class UsersService implements UserDetailsService {
 
 
 
-    //////////////////
+
+
 
     // userUuid 사용하여 회원정보 조회
     @Transactional
@@ -320,7 +308,5 @@ public class UsersService implements UserDetailsService {
         return users != null ? users.getUsername() : null;
 
     }
-
-
 
 }

@@ -48,9 +48,6 @@ public class Plogging {
 
     @Column(name = "plogging_time", columnDefinition = "time")
     @ColumnDefault("00:00:00")
-    // @Formula 어노테이션을 사용하여 시간 간격을 계산하는 쿼리를 정의합니다.
-    //@Formula("(plogging_end - plogging_start")
-    //private Duration ploggingTime;
     private Time ploggingTime;
 
     @Column(name = "plogging_distance", columnDefinition = "decimal(2, 1)")
@@ -69,7 +66,6 @@ public class Plogging {
 
 
     @Builder
-    //public Plogging (Users users, Ploglocation ploglocation, LocalDateTime ploggingStart, LocalDateTime ploggingEnd, Duration ploggingTime, BigDecimal ploggingDistance, int ploggingScore, List<Plogphotos> plogphotos) {
     public Plogging (Users users, Ploglocation ploglocation, LocalDateTime ploggingStart, LocalDateTime ploggingEnd, Time ploggingTime, BigDecimal ploggingDistance, int ploggingScore, List<Plogphotos> plogphotos) {
         this.users = users;
         this.ploglocation = ploglocation;

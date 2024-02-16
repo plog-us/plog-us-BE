@@ -20,14 +20,14 @@ public class JoinRequestDto {
     @NotBlank(message = "이메일")
     private String email;
 
+
+
     public Users toEntity(String encodedPassword) {
         return Users.builder()
                 .username(this.username)
                 .password(encodedPassword)
                 .email(this.email)
                 .role(UsersRole.ROLE_USER)
-                //.provider(null)
-                //.providerId(null)
                 .build();
     }
 

@@ -16,8 +16,9 @@ public class PlogphotoSaveRequestDto {
     private Long ploggingUuid;
     private String plogphotoUrl;
     private String photoUuid;
-
     private MultipartFile plogphoto;
+
+
 
 //    @Builder
 //    public PlogphotoSaveRequestDto(Long ploggingUuid, String plogphotoUrl, String photoUuid) {
@@ -27,11 +28,13 @@ public class PlogphotoSaveRequestDto {
 //    }
 
     public Plogphotos toEntity(Plogging plogging, String plogphotoUrl, String photoUuid) {
+
         return Plogphotos.builder()
                 .plogging(plogging)
                 .plogphotoUrl(plogphotoUrl)
                 .photoUuid(photoUuid)
                 .build();
+
     }
 
 }

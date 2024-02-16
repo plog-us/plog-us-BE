@@ -18,10 +18,13 @@ public class GoogleCloudStorageConfig {
         ClassPathResource resource = new ClassPathResource("oceanic-craft-412007-8dee390f63d1.json");
         GoogleCredentials credentials = GoogleCredentials.fromStream(resource.getInputStream());
         String projectId = "oceanic-craft-412007";
+
         return StorageOptions.newBuilder()
                 .setProjectId(projectId)
                 .setCredentials(credentials)
                 .build()
                 .getService();
+
     }
+
 }

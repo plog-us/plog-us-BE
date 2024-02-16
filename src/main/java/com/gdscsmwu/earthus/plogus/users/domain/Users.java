@@ -2,10 +2,8 @@ package com.gdscsmwu.earthus.plogus.users.domain;
 
 import com.gdscsmwu.earthus.plogus.plogging.domain.Plogging;
 import com.gdscsmwu.earthus.plogus.quiz.domain.Quiz;
-import com.gdscsmwu.earthus.plogus.users.dto.UserProfileUpdateRequestDto;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -91,6 +89,20 @@ public class Users {
     public void updateUserProfile(String imageUrl, String imageUuid) {
         this.userProfile = imageUrl;
         this.profileUuid = imageUuid;
+    }
+
+
+
+    public Users update(String username, String password, String provider, String providerId, String userProfile) {
+
+        this.username = username;
+        this.password = password;
+        this.provider = provider;
+        this.providerId = providerId;
+        this.userProfile = userProfile;
+
+        return this;
+
     }
 
 }

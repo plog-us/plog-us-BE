@@ -4,7 +4,6 @@ import com.gdscsmwu.earthus.plogus.ploglocation.domain.Ploglocation;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.locationtech.jts.geom.Point;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -32,6 +31,8 @@ public class Wastebin {
 
     @Column(name = "bin_longitude", columnDefinition = "decimal(10, 7)")
     private BigDecimal binLongitude;
+
+
 
     @Builder
     public Wastebin (Ploglocation ploglocation, String binAddress, BigDecimal binLatitude, BigDecimal binLongitude) {

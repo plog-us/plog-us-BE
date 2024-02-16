@@ -49,21 +49,6 @@ public class PloggingService {
 
     // 플로깅 시작 : userUuid, plogUuid, ploggingStart
     @Transactional
-//    public Long ploggingStart(Long userUuid, Long plogUuid) {
-//
-//        Users users = usersRepository.findByUserUuid(userUuid);
-//        Ploglocation ploglocation = ploglocationRepository.findByPlogUuid(plogUuid);
-//
-//        PloggingStartRequestDto ploggingStartRequestDto = PloggingStartRequestDto.builder()
-//                .userUuid(userUuid)
-//                .plogUuid(plogUuid)
-//                .build();
-//
-//        Plogging plogging = ploggingStartRequestDto.toEntity(users, ploglocation);
-//
-//        return ploggingRepository.save(plogging).getPloggingUuid();
-//
-//    }
     public Long ploggingStart(Long userUuid, Long plogUuid) {
 
         Users users = usersRepository.findByUserUuid(userUuid);
@@ -88,6 +73,7 @@ public class PloggingService {
         plogging.setPloggingScore(plogging.getPloggingScore() + 1);
 
         return ploggingUuid;
+
     }
 
     // 플로깅 종료 : ploggingEnd, ploggingTime
