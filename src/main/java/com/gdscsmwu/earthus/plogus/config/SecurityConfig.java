@@ -52,8 +52,8 @@ public class SecurityConfig {
                         // 이렇게 구글 로그인을 통해 보낸 엑세스 토큰 + 사용자 프로필 정보들이
                         // PrincipalOauth2UserService.java의 loadUser 함수의 매개변수 userRequest에 리턴된다.
 
-                                .defaultSuccessUrl("http://localhost:8080/")
-                                //.failureUrl("/error")
+                                .defaultSuccessUrl("/")
+                                .failureUrl("/error")
 
                 )
 
