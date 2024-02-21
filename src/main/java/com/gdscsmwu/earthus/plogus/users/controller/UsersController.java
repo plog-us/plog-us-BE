@@ -23,12 +23,12 @@ public class UsersController {
 
     private final UsersService usersService;
 
-    @GetMapping("/")
-    public String home() {
-
-        return "index";
-
-    }
+//    @GetMapping("/")
+//    public String home() {
+//
+//        return "index";
+//
+//    }
 
 
 

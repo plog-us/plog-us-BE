@@ -15,9 +15,11 @@ public class GoogleCloudStorageConfig {
     @Bean
     public Storage storage() throws IOException {
 
-        ClassPathResource resource = new ClassPathResource("oceanic-craft-412007-8dee390f63d1.json");
+//        ClassPathResource resource = new ClassPathResource("oceanic-craft-412007-8dee390f63d1.json");
+        ClassPathResource resource = new ClassPathResource("elegant-wavelet-414706-86dd47be39a7.json");
         GoogleCredentials credentials = GoogleCredentials.fromStream(resource.getInputStream());
-        String projectId = "oceanic-craft-412007";
+//        String projectId = "oceanic-craft-412007";
+        String projectId = "elegant-wavelet-414706";
 
         return StorageOptions.newBuilder()
                 .setProjectId(projectId)
